@@ -1,0 +1,153 @@
+# Conky settings #
+background no
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+#imlib_cache_size 0
+
+temperature_unit celsius
+
+# Window specifications #
+#own_window_class Conky
+own_window_class Desktop
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 520 600
+maximum_width 600
+
+alignment top_right
+gap_x 20
+gap_y 100
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+default_color gray
+default_shade_color red
+default_outline_color green
+
+# Text settings #
+use_xft yes
+override_utf8_locale yes
+xftfont Play:normal:size=7
+xftalpha 0.9
+uppercase no
+
+default_color 333333
+color0 FFFFFF
+color1 FFFFFF
+color2 1994D1
+#color3 1994D1 
+
+# Lua Load  ##${voffset 750}
+lua_load ./rings-v1.3.1.lua
+#lua_draw_hook_pre ring_stats
+lua_draw_hook_pre conky_main
+
+own_window_argb_visual yes
+own_window_argb_value 0
+own_window_colour 000000
+TEXT
+${font Play:normal:size=7}${voffset 3}${goto 120}${color1}CPU ${alignr 330}${color1}${cpu cpu}%
+${font Play:normal:size=7}${voffset 0}${color1}${goto 120}${freq_g cpu0} Ghz${alignr 330}${hwmon temp 1} °C
+${font Play:normal:size=6}${voffset 7}${goto 120}${color1}CPU  1${alignr 330}${color1}${cpu cpu1}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  2${alignr 330}${color1}${cpu cpu2}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  3${alignr 330}${color1}${cpu cpu3}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  4${alignr 330}${color1}${cpu cpu4}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  5${alignr 330}${color1}${cpu cpu5}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  6${alignr 330}${color1}${cpu cpu6}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  7${alignr 330}${color1}${cpu cpu7}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  8${alignr 330}${color1}${cpu cpu8}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU  9${alignr 330}${color1}${cpu cpu9}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU 10${alignr 330}${color1}${cpu cpu10}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU 11${alignr 330}${color1}${cpu cpu11}%
+${font Play:normal:size=6}${voffset 0}${goto 120}${color1}CPU 12${alignr 330}${color1}${cpu cpu12}%
+
+${font Michroma:size=10}${color0}${goto 40}${voffset 0}CPU ${goto 394}${voffset 0}GPU
+
+######_GPU_PLACA_GRAFICA_######
+${font Play:normal:size=7}${voffset 60}${goto 410}${color1}GPU Temp: ${alignr}${color1}${nvidia temp} °C
+${font Play:normal:size=7}${voffset 0}${goto 410}${color1}Fan Speed: ${alignr}${color1}${execi 5 nvidia-settings -q [fan:0]/GPUCurrentFanSpeed -t} %
+${font Play:normal:size=7}${voffset 2}${goto 410}${color1}GPU Clock: ${alignr}${color1}${nvidia gpufreq} MHz
+${font Play:normal:size=7}${voffset 4}${goto 410}${color1}Mem Used: ${alignr}${color1}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} / ${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
+######_MEMORIA_#######
+${font Michroma:size=10}${color0}${goto 200}${voffset 4}MEMORY
+${font Play:normal:size=7}${voffset 64}${goto 148}${color1}SWAP${goto 180}${color1}${swap} / ${color1}${swapmax}
+${font Play:normal:size=7}${voffset 4}${goto 148}${color1}RAM ${goto 180}${color1}${mem} / ${color1}${memmax}
+######_ARMAZENAMENTO_#####
+${font Play:normal:size=7}${goto 350}${voffset -75}Root${color1}${alignr 180}${fs_used /} / ${fs_size /}
+${font Play:normal:size=7}${goto 350}${voffset 5}Home${alignr 180}${color1}${fs_used /home} / ${fs_size /home}
+${font Play:normal:size=7}${goto 350}${voffset 5}Usr${alignr 180}${color1}${fs_used /usr} / ${fs_size /usr}
+${font Michroma:size=10}${color0}${goto 25}${voffset 80}TIME
+${font Play:normal:size=10}${voffset 0}${goto 15}Local: ${time %H:%M:%S}${font}
+${font Play:normal:size=10}${voffset 0}${goto 15}${Time %A %m-%d-%y}
+${font Michroma:size=10}${color0}${goto 325}${voffset -40}HARD  DRIVE
+${font Michroma:size=10}${color0}${voffset 26}${goto 324}INTERNET  INFO
+# EDITION FINIR WLAN
+${if_existing /proc/net/route wlan0}${font Play:normal:size=7}${color1}${alignr 54}${voffset -8}WiFi  ${color1}${wireless_essid wlan0}
+${font Play:normal:size=7}${color1}${goto 298}${voffset 2}Up${goto 370}${color1}${totalup wlan0} / ${color1}${upspeed wlan0}
+${font Play:normal:size=7}${goto 298}${color1}Down${goto 370}${color1}${totaldown wlan0} / ${color1}${downspeed wlan0}
+${font Play:normal:size=8}${goto 300}${voffset 2}Local IP${goto 370}${addr wlan0}
+${font Play:normal:size=8}${goto 300}${voffset 1}Public IP${goto 370}${execi 3600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+${font Michroma:size=9}${goto 90}${voffset -42}${color0}${time %a} ${color0}${time %x}
+${font Michroma:size=18}${goto 118}${color1}${voffset -4}${time %H}:${time %M}
+${font Michroma:size=8}${color0}${goto 296}${voffset 18}BATTERIE
+${font Play:size=8}${color0}${goto 278}${voffset 5}${color1}${battery_percent BAT1}%
+# |--ENP5S0
+${else}${if_existing /proc/net/route enp5s0}${font Play:normal:size=7}${color1}${goto 290}${voffset 22}Up${goto 350}${color1}${totalup enp5s0} / ${color1}${upspeed enp5s0}
+${font Play:normal:size=7}${goto 290}${voffset 2}${color1}Down${goto 350}${color1}${totaldown enp5s0} / ${color1}${downspeed enp5s0}
+${font Play:normal:size=8}${goto 300}${voffset 2}Local IP${goto 370}${addr enp5s0}
+${font Play:normal:size=8}${goto 300}${voffset 1}Public IP${goto 370}${execi 3600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+######_HORA_######
+#${font Michroma:size=9}${alignr 298}${voffset -42}${color0}${time %a} ${color0}${time %x}
+#${font Play:normal:size=8}${goto 118}${color1}${voffset -4}${time %H}
+#${font Play:normal::size=8}${goto 118}${color1}${voffset -4}:${time %M}
+#${font Play:normal::size=8}${goto 118}${color1}${voffset -4}:${time %S}
+#${font Michroma:size=8}${color0}${goto 296}${voffset 18}BATTERIE
+#${font Play:size=8}${color0}${goto 278}${voffset 4}${color1}${battery_percent BAT1}%${endif}${endif}
+#${font Play:normal:size=7}${goto 180}Uptime${color1}${alignr 100}${uptime_short}
+##${font Michroma:size=11}${color0}${voffset 150}${alignr 150}${pre_exec cat /etc/issue.net}  ${machine}
+#${execpi 53 $HOME/conky/nagios.sh}
+${color0}${hr 2}
+###############_SISTEMA_#################
+${font Play:normal:size=10}${voffset 0}${color}${goto 15}OS${goto 58}: ${color}${execi 864000 awk '/DISTRIB_ID=/' /etc/*-release | sed 's/DISTRIB_ID=//'} ${execi 86400 awk '/DISTRIB_RELEASE=/' /etc/*-release | sed 's/DISTRIB_RELEASE=//' | sed 's/[.]0/./'}
+${font Play:normal:size=10}${voffset 0}${color}${goto 15}Kernel${goto 58}: ${color}$kernel on $machine
+${font Play:normal:size=10}${voffset 0}${color}${goto 15}Uptime${goto 58}: ${color}$uptime_short     ${color1}Load  : ${color}${loadavg}
+${font Play:normal:size=10}${voffset 0}${color}${goto 15}PC User${goto 58}: ${color}${USER}
+#####_CORRIGIR_TEMPERATURA_###############
+${font Play:normal:size=10}${voffset 0}${goto 15}${color}CPU Temp: ${color}${hwmon temp 1} °C
+
+############_Top_Processamentos_###############
+${font Play:normal:size=10}${voffset 0}${goto 0}${color1}Top Processes:
+${font Play:normal:size=10}${voffset 0}${goto 0}${color1}Name          ${goto 110}  ${color1}PID          ${goto 150} ${color1}CPU%        ${goto 210} ${color1}MEM%
+${font Play:normal:size=10}${voffset 0}${goto 0}${color1}${top name 1} ${goto 110} ${color1}${top pid 1} ${goto 150} ${color1}${top cpu 1} ${goto 210} ${color1}${top mem 1}
+${font Play:normal:size=10}${voffset 0}${goto 0}${color1}${top name 2} ${goto 110} ${color1}${top pid 2} ${goto 150} ${color1}${top cpu 2} ${goto 210} ${color1}${top mem 2}
+${font Play:normal:size=10}${voffset 0}${goto 0}${color1}${top name 3} ${goto 110} ${color1}${top pid 3} ${goto 150} ${color1}${top cpu 3} ${goto 210} ${color1}${top mem 3}
+${font Play:normal:size=10}${voffset 0}${goto 0}${color1}${top name 4} ${goto 110} ${color1}${top pid 4} ${goto 150} ${color1}${top cpu 4} ${goto 210} ${color1}${top mem 4}
+${font Play:normal:size=10}${voffset 0}${goto 0}${color1}${top name 5} ${goto 110} ${color1}${top pid 5} ${goto 150} ${color1}${top cpu 5} ${goto 210} ${color1}${top mem 5}
+${font Play:normal:size=10}${voffset 0}${color1}${goto 35}Processes: ${color}$processes ${color1}Running: ${color}$running_processes
+${color0}${hr 2}
+###########_TEXTO_###########
+${font Play:normal:size=10}${voffset 0}${alignc} Gun_Hazard Linux 
+${hr 2}
+${font Play:normal:size=10}${voffset 2}Local: ${alignc}${time %H:%M:%S}${font}
+${font Play:normal:size=10}${voffset 0}${alignc -6}${Time %A %m-%d-%y}
+${hr 2}
+

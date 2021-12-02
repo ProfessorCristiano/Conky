@@ -1,0 +1,110 @@
+# Feito por Cristiano Teixeira
+background yes
+use_xft yes
+xftfont arial:size=10
+xftalpha 0.5
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 500 1200
+maximum_width 250
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graaph_borders yes
+default_color white
+default_shade_color red
+default_outline_color grey
+alignment top_left
+gap_x 1800
+gap_y 40
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+own_window_argb_value 0
+own_window_argb_visual no
+own_window_colour 000000
+###########_TEXTO_###########
+TEXT
+${alignc}${font arial:size=14} Gun_Hazard Linux ${font}
+${hr 2}
+${goto 15}Local: ${alignc}${font arial:size=10}${time %H:%M:%S}${font}
+${alignc -6}${font arial:size=8}${Time %A %m-%d-%y}
+${hr 2}
+###############_SISTEMA_#################
+#${color}${goto 15}OS      : ${color}${execi 86400 cat `ls -atr /etc/*-release | tail -2` | grep "PRETTY_NAME" | cut -d= -f2 |  sed 's/"//g'}
+${color}${goto 15}OS      : ${color}${execi 864000 awk '/DISTRIB_ID=/' /etc/*-release | sed 's/DISTRIB_ID=//'} ${execi 86400 awk '/DISTRIB_RELEASE=/' /etc/*-release | sed 's/DISTRIB_RELEASE=//' | sed 's/[.]0/./'}
+${color}${goto 15}Kernel  : ${color}$kernel on $machine
+${color}${goto 15}Uptime  : ${color}$uptime_short ${alignr}${color1}Load  : ${color}${loadavg}
+#${color}${goto 15}PC User : ${color}${USER}
+#####_CORRIGIR_TEMPERATURA_###############
+${goto 15}${color}CPU Temp: ${alignr}${color}${hwmon temp 1} °C
+############ PROCESSADORES ###############
+${hr 2}
+CPU ${goto 80}${freq_g} GHz
+CPU    ${cpu cpu} %  ${color}${goto 85}${cpugraph cpu}
+CPU  1 ${cpu cpu1}%  ${color}${goto 85}${cpubar cpu1}
+CPU  2 ${cpu cpu2}%  ${color}${goto 85}${cpubar cpu2}
+CPU  3 ${cpu cpu3}%  ${color}${goto 85}${cpubar cpu3}
+CPU  4 ${cpu cpu4}%  ${color}${goto 85}${cpubar cpu4}
+CPU  5 ${cpu cpu5}%  ${color}${goto 85}${cpubar cpu5}
+CPU  6 ${cpu cpu6}%  ${color}${goto 85}${cpubar cpu6}
+CPU  7 ${cpu cpu7}%  ${color}${goto 85}${cpubar cpu7}
+CPU  8 ${cpu cpu8}%  ${color}${goto 85}${cpubar cpu8}
+CPU  9 ${cpu cpu9}%  ${color}${goto 85}${cpubar cpu9}
+CPU 10 ${cpu cpu10}% ${color}${goto 85}${cpubar cpu10}
+CPU 11 ${cpu cpu11}% ${color}${goto 85}${cpubar cpu11}
+CPU 12 ${cpu cpu12}% ${color}${goto 85}${cpubar cpu12}
+${hr 2}
+##################_RAM_E_SWAP_#################
+${color}${goto 5}RAM :  ${color}$mem / $memmax ${alignr}$memperc%
+${membar}
+${color}${goto 5}SWAP:  ${color}$swap / $swapmax $alignr}$swapperc%
+${swapbar}
+${hr 2}
+############_Top_Processamentos_###############
+${goto 0}${color1}Top Processes:
+${goto 0}${color1}Name          ${goto 110}  ${color1}PID          ${goto 150} ${color1}CPU%        ${goto 210} ${color1}MEM%
+${goto 0}${color1}${top name 1} ${goto 110} ${color1}${top pid 1} ${goto 150} ${color1}${top cpu 1} ${goto 210} ${color1}${top mem 1}
+${goto 0}${color1}${top name 2} ${goto 110} ${color1}${top pid 2} ${goto 150} ${color1}${top cpu 2} ${goto 210} ${color1}${top mem 2}
+${goto 0}${color1}${top name 3} ${goto 110} ${color1}${top pid 3} ${goto 150} ${color1}${top cpu 3} ${goto 210} ${color1}${top mem 3}
+${goto 0}${color1}${top name 4} ${goto 110} ${color1}${top pid 4} ${goto 150} ${color1}${top cpu 4} ${goto 210} ${color1}${top mem 4}
+${goto 0}${color1}${top name 5} ${goto 110} ${color1}${top pid 5} ${goto 150} ${color1}${top cpu 5} ${goto 210} ${color1}${top mem 5}
+${color1}${goto 35}Processes: ${color}$processes ${color1}Running: ${color}$running_processes
+${color0}${hr 2}
+################_ARMAZENAMENTO_#################
+${color0}File systems:
+${color0}  ROOT${color0} ${goto 145}LIVRE:${goto 200}${fs_free /}
+${color0}  ${fs_bar 8,128 /} ${goto 145}USADO:${goto 200}${fs_used /}
+${color0}  USADO ${fs_used_perc /}% ${color} ${goto 145}TOTAL:${goto 200}${fs_size /}
+${color0}  HOME${color0}${goto 145}LIVRE:${goto 200}${fs_free /home}
+${color0}  ${fs_bar 8,128 /home/}${goto 145}USADO:${goto 200}${fs_used /home/}
+${color0}  ${fs_used_perc /home/}% ${color0} ${goto 145}TOTAL:${goto 200}${fs_size /home/}
+${color0}${hr 2}
+######_GPU_PLACA_GRAFICA_######
+${goto 35}${color}GPU Temp: ${alignr}${color}${nvidia temp} C
+${goto 35}${color}Fan Speed: ${alignr}${color}${execi 5 nvidia-settings -q [fan:0]/GPUCurrentFanSpeed -t} %
+${goto 35}${color}GPU Clock: ${alignr}${color}${nvidia gpufreq} MHz
+${goto 35}${color}Mem Clock: ${alignr}${color}${nvidia memfreq} MHz
+${goto 35}${color}Mem Used: ${alignr}${color}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} / ${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
+#########_REDE_##############
+# Descomente abaixo para Wireless
+#${color1}Wireless wlan0: ${addr wlan0}
+#${color1}${goto 3}SSID          : ${color}${wireless_essid enp5s0} ${color1}${alignr}Signal: ${color}${wireless_link_qual_perc enp5s0}% ${wireless_link_bar 4,100 wlan0}
+#${color1}${goto 3}Bitrate       : ${color}${wireless_bitrate enp5s0}
+#${color1}${goto 3}Total Down/Up : ${color}${totaldown enp5s0}/${totalup enp5s0}
+#${color1}${goto 3}Speed Down/Up : ${color}${downspeed enp5s0}/${upspeed enp5s0}
+# Descomente Abaixo para Cabeada
+${color}Ethernet Network enp5s0: ${addr enp5s0}
+${color}${goto 3}Total Down/Up : ${totaldown enp5s0} / ${totalup enp5s0}
+${color}${goto 3}Inbound $alignr ${downspeedf enp5s0} kb/s
+${downspeedgraph enp5s0}
+${color}${goto 3}Speed Down/Up : ${downspeed enp5s0} / ${upspeed enp5s0}
+${color}${goto 3}Outbound $alignr ${upspeedf enp5s0} kb/s
+${upspeedgraph enp5s0}
+${hr 2}
