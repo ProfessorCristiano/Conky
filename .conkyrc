@@ -1,0 +1,132 @@
+# Feito por Cristiano Teixeira
+conky.config = {
+	alignment = 'top_left',
+	background = true,
+	border_width = 1,
+    	cpu_avg_samples = 2,
+    	default_color = 'white',
+    	default_outline_color = 'grey',
+    	default_shade_color = 'red',
+    	double_buffer = true,
+    	draw_borders = false,
+    	draw_graph_borders = true,
+    	draw_outline = false,
+    	draw_shades = false,
+    	extra_newline = false,
+    	font = 'Arial:size=10',
+    	gap_x = 0,
+    	gap_y = 20,
+    	minimum_height = 1000,
+    	minimum_width = 1800,
+    	net_avg_samples = 2,
+    	no_buffers = true,
+    	out_to_console = false,
+    	out_to_ncurses = false,
+    	out_to_stderr = false,
+    	out_to_x = true,
+    	own_window = true,
+    	
+    	own_window_argb_value = 0,
+	own_window_argb_visual = false,
+	own_window_colour = 'white',
+    	
+    	
+    	own_window_class = 'Conky',
+    	
+    	own_window_hints = undecorated,below,sticky,skip_taskbar,skip_pager,
+    	
+    	own_window_transparent = true,
+    	
+    	own_window_type = 'desktop',
+    	
+    	override_utf8_locale = true,
+    	
+    	show_graph_range = false,
+    	show_graph_scale = false,
+    	stippled_borders = 0,
+    	update_interval = 1.0,
+    	uppercase = false,
+    	use_spacer = 'none',
+    	use_xft = true,
+	
+	total_run_times = 0,
+	 
+	
+}
+
+conky.text = [[
+    ${goto 650}${voffset 10}${color EAEAEA}${font GE Inspira:pixelsize=120}${time %H:%M}${font}${voffset -84}${offset 10}${color FFA300}${font GE Inspira:pixelsize=42}${time %d} ${voffset -15}${color EAEAEA}${font GE Inspira:pixelsize=22}${time  %B} ${time %Y}${font}${voffset 24}${font GE Inspira:pixelsize=58}${offset -148}${time %A}${font}
+    
+    ${goto 650}${voffset 1}${offset 12}${font Ubuntu:pixelsize=12}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%${offset 60}${color FFA300}TEMP ${offset 9}$color${hwmon temp 1}° 
+    #${goto 1400}${alignc}${font arial:size=14} Gun_Hazard Linux ${font}
+	#${goto 1400}${hr 2}
+	#${goto 1400}Local: ${alignc}${font arial:size=10}${time %H:%M:%S}${font}
+	#${goto 1400}${alignc -6}${font arial:size=8}${Time %A %m-%d-%y}
+	#${goto 1400}${hr 2}
+    #${goto 1400}${color}OS      : ${color}${execi 86400 cat `ls -atr /etc/*-release | tail -2` | grep "PRETTY_NAME" | cut -d= -f2 |  sed 's/"//g'}
+	${goto 1400}${font arial:size=10}${color FFA300}OS      : ${color}${execi 864000 awk '/DISTRIB_ID=/' /etc/*-release | sed 's/DISTRIB_ID=//'} ${execi 86400 awk '/DISTRIB_RELEASE=/' /etc/*-release | sed 's/DISTRIB_RELEASE=//' | sed 's/[.]0/./'}
+	${goto 1400}${color FFA300}Kernel  : ${color}$kernel on $machine
+	${goto 1400}${color FFA300}Uptime  : ${color}$uptime_short ${alignr}${color1}Load  : ${color}${loadavg}
+	${goto 1400}#${color FFA300}PC User : ${color}${USER}
+	${goto 1400}${color FFA300}CPU Temp: ${alignr}${color}${hwmon temp 1} °C
+    ${goto 1400}${font arial:size=9}${hr 2}
+	${goto 1400}${color FFA300}CPU ${goto 1480}${freq_g} GHz
+	${goto 1400}${color FFA300}CPU    ${goto 1460}${color}${cpu cpu} %  ${color}${goto 1480}${cpugraph cpu}
+	${goto 1400}${color FFA300}CPU  1 ${goto 1460}${color}${cpu cpu1}%  ${color}${goto 1485}${cpubar cpu1}
+	${goto 1400}${color FFA300}CPU  2 ${goto 1460}${color}${cpu cpu2}%  ${color}${goto 1485}${cpubar cpu2}
+	${goto 1400}${color FFA300}CPU  3 ${goto 1460}${color}${cpu cpu3}%  ${color}${goto 1485}${cpubar cpu3}
+	${goto 1400}${color FFA300}CPU  4 ${goto 1460}${color}${cpu cpu4}%  ${color}${goto 1485}${cpubar cpu4}
+	${goto 1400}${color FFA300}CPU  5 ${goto 1460}${color}${cpu cpu5}%  ${color}${goto 1485}${cpubar cpu5}
+	${goto 1400}${color FFA300}CPU  6 ${goto 1460}${color}${cpu cpu6}%  ${color}${goto 1485}${cpubar cpu6}
+	${goto 1400}${color FFA300}CPU  7 ${goto 1460}${color}${cpu cpu7}%  ${color}${goto 1485}${cpubar cpu7}
+	${goto 1400}${color FFA300}CPU  8 ${goto 1460}${color}${cpu cpu8}%  ${color}${goto 1485}${cpubar cpu8}
+	${goto 1400}${color FFA300}CPU  9 ${goto 1460}${color}${cpu cpu9}%  ${color}${goto 1485}${cpubar cpu9}
+	${goto 1400}${color FFA300}CPU 10 ${goto 1460}${color}${cpu cpu10}% ${color}${goto 1485}${cpubar cpu10}
+	${goto 1400}${color FFA300}CPU 11 ${goto 1460}${color}${cpu cpu11}% ${color}${goto 1485}${cpubar cpu11}
+	${goto 1400}${color FFA300}CPU 12 ${goto 1460}${color}${cpu cpu12}% ${color}${goto 1485}${cpubar cpu12}
+	${goto 1400}${hr 2}
+	${goto 1400}${color FFA300}RAM :  ${color}$mem / $memmax ${alignr}$memperc%
+	${goto 1400}${membar}
+	${goto 1400}${color FFA300}SWAP:  ${color}$swap / $swapmax $alignr}$swapperc%
+	${goto 1400}${swapbar}
+	#${goto 1400}${hr 2}
+	${goto 1400}${color FFA300}TOP PROCESSES:
+	${goto 1400}${color FFA300}Name          ${goto 1600}${color FFA300}PID${goto 1650}${color FFA300}CPU%${goto 1700} ${color FFA300}MEM%
+	${goto 1400}${color1}${top name 1} ${goto 1600} ${color1}${top pid 1} ${goto 1650} ${color1}${top cpu 1} ${goto 1700} ${color1}${top mem 1}
+	${goto 1400}${color1}${top name 2} ${goto 1600} ${color1}${top pid 2} ${goto 1650} ${color1}${top cpu 2} ${goto 1700} ${color1}${top mem 2}
+	${goto 1400}${color1}${top name 3} ${goto 1600} ${color1}${top pid 3} ${goto 1650} ${color1}${top cpu 3} ${goto 1700} ${color1}${top mem 3}
+	${goto 1400}${color1}${top name 4} ${goto 1600} ${color1}${top pid 4} ${goto 1650} ${color1}${top cpu 4} ${goto 1700} ${color1}${top mem 4}
+	${goto 1400}${color1}${top name 5} ${goto 1600} ${color1}${top pid 5} ${goto 1650} ${color1}${top cpu 5} ${goto 1700} ${color1}${top mem 5}
+	${goto 1400}${color1}${goto 1435}Processes: ${color}$processes ${color1}Running: ${color}$running_processes
+	${goto 1400}${color0}${hr 2}
+	${goto 1400}${color FFA300}FILE SYSTEMS:
+	${goto 1400}${color FFA300}   ROOT${color0} ${goto 1700}${color FFA300}LIVRE:${alignr}${color0}${fs_free /}
+	${goto 1400}${color0}   ${fs_bar 8,250 /} ${goto 1700}${color FFA300}USADO:${alignr}${color0}${fs_used /}
+	${goto 1400}${color FFA300}   USADO : ${color0}${fs_used_perc /}% ${goto 1700}${color FFA300}TOTAL:${alignr}${color0}${fs_size /}
+	${goto 1400}${color FFA300}   HOME${color0}${goto 1700}${color FFA300}LIVRE:${alignr}${color0}${fs_free /home}
+	${goto 1400}${color0}  ${fs_bar 8,250 /home/}${goto 1700}${color FFA300}USADO:${alignr}${color0}${fs_used /home/}
+	${goto 1400}${color FFA300}   USADO : ${color0}${fs_used_perc /home/}% ${goto 1700}${color FFA300}TOTAL:${alignr}${color0}${fs_size /home/}
+	${goto 1400}${color0}${hr 2}
+	${goto 1400}${color FFA300}GPU Temp: ${alignr}${color}${nvidia temp} C
+	${goto 1400}${color FFA300}Fan Speed: ${alignr}${color}${execi 5 nvidia-settings -q [fan:0]/GPUCurrentFanSpeed -t} %
+	${goto 1400}${color FFA300}GPU Clock: ${alignr}${color}${nvidia gpufreq} MHz
+	${goto 1400}${color FFA300}Mem Clock: ${alignr}${color}${nvidia memfreq} MHz
+	${goto 1400}${color FFA300}Mem Used: ${alignr}${color}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} / ${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
+    ${goto 1400}${color0}${hr 2}
+	# Descomente abaixo para Wireless
+	#${goto 1400}${color1}Wireless wlan0: ${addr wlan0}
+	#${goto 1400}${color1}${goto 3}SSID          : ${color}${wireless_essid enp5s0} ${color1}${alignr}Signal: ${color}${wireless_link_qual_perc enp5s0}% ${wireless_link_bar 4,100 wlan0}
+	#${goto 1400}${color1}${goto 3}Bitrate       : ${color}${wireless_bitrate enp5s0}
+	#${goto 1400}${color1}${goto 3}Total Down/Up : ${color}${totaldown enp5s0}/${totalup enp5s0}
+	#${goto 1400}${color1}${goto 3}Speed Down/Up : ${color}${downspeed enp5s0}/${upspeed enp5s0}
+	# Descomente Abaixo para Cabeada
+	${goto 1400}${color FFA300}Ethernet Network enp5s0 : ${goto 1600}${color0}${addr enp5s0}
+    ${goto 1400}${color FFA300}Public IP : ${goto 1600}${color0}${execi 3600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+	${goto 1400}${color FFA300}Speed Down : ${color0}${goto 1520}${downspeed enp5s0} /${goto 1600}${color FFA300}Speed Up : ${goto 1670} ${color0}${upspeed enp5s0}
+    ${goto 1400}${color FFA300}Total Down : ${color0}${goto 1520}${totaldown enp5s0} /${goto 1600}${color FFA300}Total Up : ${goto 1670} ${color0}${totalup enp5s0}
+	${goto 1400}${color FFA300}Inbound: ${color0}$alignr ${downspeedf enp5s0} kb/s
+	${goto 1400}${font arial:size=6}${downspeedgraph enp5s0}
+	${goto 1400}${font arial:size=9}${color FFA300}Outbound $alignr ${color0}${upspeedf enp5s0} kb/s
+	${goto 1400}${font arial:size=6}${upspeedgraph enp5s0}
+	${goto 1400}${hr 2}
+]]
